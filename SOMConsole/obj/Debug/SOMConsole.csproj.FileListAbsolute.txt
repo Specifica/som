@@ -4,3 +4,9 @@ C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\bin\Debug\S
 C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\obj\Debug\SOMConsole.csprojResolveAssemblyReference.cache
 C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\obj\Debug\SOMConsole.exe
 C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\obj\Debug\SOMConsole.pdb
+C:\Users\Fer\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\bin\Debug\SOMConsole.exe.config
+C:\Users\Fer\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\obj\Debug\SOMConsole.exe
+C:\Users\Fer\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\obj\Debug\SOMConsole.pdb
+C:\Users\Fer\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\bin\Debug\SOMConsole.exe
+C:\Users\Fer\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\bin\Debug\SOMConsole.pdb
+C:\Users\Fer\Dropbox\Visual Studio Projects\SOMConsole\SOMConsole\obj\Debug\SOMConsole.csprojResolveAssemblyReference.cache

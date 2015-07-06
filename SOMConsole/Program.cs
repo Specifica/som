@@ -12,43 +12,10 @@ namespace SOMConsole
     {
         static void Main(string[] args)
         {
-            var Instancias = CsvInterface.ReadCsvFile(@"C:\Users\Fer500\Dropbox\problema1.csv");
+            var Instancias = CsvInterface.ReadCsvFile(@"C:\Users\Fer\Dropbox\problema1.csv");
+            var Pesos = new List<Tuple<Double, Double>>();
 
-            foreach (var inst in Instancias)
-            {
-                Console.WriteLine(inst.Item1 + "; " + inst.Item2);
-            }
-            //W1 = [0.5, -0.3]; W2 = [-0.5, 0.8]; W3 = [-0.9, -0.7]; W4 = [-0.2, -0.8]; W5 = [-0.1, -0.1];
-
-            var VectoresDePeso = new List<Tuple<Double, Double>>();
-
-            VectoresDePeso = CsvInterface.ReadCsvFile(@"C:\Users\Fer500\Dropbox\PesosProblema1.csv");
-
-            List<int> NeuronasActivadas = new List<int>();
-
-            foreach (var Instancia in Instancias)
-            {
-                Console.WriteLine("Distancias contra instancia: " + Instancias.IndexOf(Instancia));
-                var IndiceGanador = FuncionActivacion(VectoresDePeso, Instancia);
-                NeuronasActivadas.Add(IndiceGanador);
-
-                Console.WriteLine();
-
-                Console.WriteLine("Nuevos Pesos:");
-                VectoresDePeso = ActualizarPesos(VectoresDePeso, Instancia, Instancias.IndexOf(Instancia) + 1, IndiceGanador);
-                foreach (var item in VectoresDePeso)
-                {
-                    Console.WriteLine(item.Item1 + ";" + item.Item2);
-                }
-            }
-            Console.WriteLine("Neuronas activadas");
-            foreach (var neurona in NeuronasActivadas)
-            {
-                Console.WriteLine(neurona);
-            }
-
-
-            Console.WriteLine("Nuevos Pesos:");
+            Pesos = CsvInterface.ReadCsvFile(@"C:\Users\Fer\Dropbox\PesosProblema1.csv");
 
             Console.ReadKey();
 
@@ -56,6 +23,13 @@ namespace SOMConsole
 
 
         private static int FuncionActivacion(List<Tuple<Double,Double>> VectoresDePeso, Tuple<Double,Double> Instancia)
+        {
+            List<Double> Distancias = CalcularDistancias(VectoresDePeso, Instancia);
+            var Result = Distancias.IndexOf(Distancias.Min());
+            return Result;
+        }
+
+        private static List<Double> CalcularDistancias(List<Tuple<Double,Double>> VectoresDePeso, Tuple<Double,Double> Instancia)
         {
             List<Double> Distancias = new List<Double>();
             
@@ -66,11 +40,10 @@ namespace SOMConsole
                 Console.WriteLine("Distancia Euclidea " + VectoresDePeso.IndexOf(Vector) + ":" + DistanciaEuclidea);
                 Distancias.Add(DistanciaEuclidea);
             }
-            
-            var Result = Distancias.IndexOf(Distancias.Min());
-            return Result;
-        }
 
+            return Distancias;
+            
+        }
 
         private static List<Tuple<Double, Double>> ActualizarPesos(
             List<Tuple<Double, Double>> VectoresDePeso, 
@@ -104,19 +77,60 @@ namespace SOMConsole
             }
             */
         }
-
-        /*
-        private static double FuncionGaussiana(Double distancia, List<Double> Columna, int Indice)
+        private static List<List<Tuple<Double,Double>>> SOMAlgorithm(List<Tuple<Double,Double>> Pesos, List<Tuple<Double,Double>> Patrones)
         {
-            //Calculo de varianza
-            var sum = 0.00;
-            foreach (var x in Columna)
-            {
-                sum += Math.Pow(x -  ,2);
-            }
-            var Varianza = sum / Columna.Count();
+            List<List<Tuple<Double,Double>>> HistorialActualizacion = new List<List<Tuple<Double,Double>>>();
+            
+            foreach (var Patron in Patrones)
+	        {
+		        var IxGanador = FuncionActivacion(Pesos,Patron);
+                Pesos = ActualizarPesos(Pesos,Patron,Patrones.IndexOf(Patron),IxGanador);
+                HistorialActualizacion.Add(Pesos);//Se guardan las configuraciones de pesos parciales. La ultima será la final.
+	        }
+            return HistorialActualizacion;
+        }
 
-            return Math.Exp(-Math.Pow(distancia, 2) / (2 * Math.Pow(Varianza, 2)));
-        }*/
+        private static List<List<Tuple<Double,Double>>> SOMAlgorithm(List<Tuple<Double,Double>> Patrones, int CantSalidas)
+        {
+            
+            List<Tuple<Double,Double>> Pesos = new List<Tuple<Double,Double>>();
+            for (var i =0; i<CantSalidas;i++)
+            {
+                Random rnd = new Random();
+                var pesoX1 = rnd.Next() * (Double.MaxValue - Double.MinValue) + Double.MinValue;
+                var pesoX2 = rnd.Next() * (Double.MaxValue - Double.MinValue) + Double.MinValue;
+
+                Pesos.Add(Tuple.Create(pesoX1,pesoX2));
+            }
+
+            List<List<Tuple<Double,Double>>> HistorialActualizacion = new List<List<Tuple<Double,Double>>>();
+            
+            foreach (var Patron in Patrones)
+	        {
+		        var IxGanador = FuncionActivacion(Pesos,Patron);
+                Pesos = ActualizarPesos(Pesos,Patron,Patrones.IndexOf(Patron),IxGanador);
+                HistorialActualizacion.Add(Pesos);//Se guardan las configuraciones de pesos parciales. La ultima será la final.
+	        }
+            return HistorialActualizacion;
+        }
+
+
+        /*private static Double CalcularVarianza(List<Double> Distancias)
+        {
+            var media = Distancias.Sum() / Distancias.Count();
+            var sum = 0.00;
+            foreach (var dist in Distancias)
+            {
+                sum += Math.Pow(dist - media, 2);
+            }
+            return sum / (Distancias.Count() - 1.00);
+        }
+
+        private static double FuncionGaussiana(List<Double> Distancias, List<Tuple<Double,Double>> VectoresDePeso)
+        {
+            var Varianza = CalcularVarianza(Distancias);
+            var Distancia = Math.Pow(Patron.item1 - VectoresDePeso.FindIndex(Indice), 2);
+            return Math.Exp(-Math.Pow(distancia, 2) / (2 * Math.Pow(Varianza, 2)));*/
+        }
     }
 }
