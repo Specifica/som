@@ -1,0 +1,11 @@
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\bin\Debug\SOMForms.exe.config
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\bin\Debug\SOMForms.exe
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\bin\Debug\SOMForms.pdb
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\obj\Debug\SOMForms.csprojResolveAssemblyReference.cache
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\obj\Debug\SOMForms.Form1.resources
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\obj\Debug\SOMForms.Properties.Resources.resources
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\obj\Debug\SOMForms.csproj.GenerateResource.Cache
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\obj\Debug\SOMForms.exe
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\obj\Debug\SOMForms.pdb
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\bin\Debug\SOMConsole.exe
+C:\Users\Fer500\Dropbox\Visual Studio Projects\SOMConsole\SOMForms\bin\Debug\SOMConsole.pdb

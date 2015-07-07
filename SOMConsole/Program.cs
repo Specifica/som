@@ -12,10 +12,12 @@ namespace SOMConsole
     {
         static void Main(string[] args)
         {
-            var Instancias = CsvInterface.ReadCsvFile(@"C:\Users\Fer\Dropbox\problema1.csv");
-            var Pesos = new List<Tuple<Double, Double>>();
+            var Patrones = CsvInterface.ReadCsvFile(@"C:\Users\Fer500\Dropbox\problema1.csv");
+            var Pesos = CsvInterface.ReadCsvFile(@"C:\Users\Fer500\Dropbox\PesosProblema1.csv");
+            Som Som = new Som();
 
-            Pesos = CsvInterface.ReadCsvFile(@"C:\Users\Fer\Dropbox\PesosProblema1.csv");
+            var HistorialActualizacion =  Som.SOMAlgorithm(Patrones,2);
+            Console.WriteLine("Numero de Iteraciones: {0}",HistorialActualizacion.Count());
 
             Console.ReadKey();
 
@@ -130,7 +132,7 @@ namespace SOMConsole
         {
             var Varianza = CalcularVarianza(Distancias);
             var Distancia = Math.Pow(Patron.item1 - VectoresDePeso.FindIndex(Indice), 2);
-            return Math.Exp(-Math.Pow(distancia, 2) / (2 * Math.Pow(Varianza, 2)));*/
-        }
+            return Math.Exp(-Math.Pow(distancia, 2) / (2 * Math.Pow(Varianza, 2)));
+        }*/
     }
 }
